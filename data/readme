@@ -1,0 +1,7 @@
+Databases/ contains the original images, the MedAnnot.mat files which contain the annotation relevance scores
+
+Training_files/ contains 
+    1) Output of the SNT and Densecap models tweaked for our purposes
+    2) Input pairs for our model training which was obtained using 5 fold split of all input pairs generated
+
+

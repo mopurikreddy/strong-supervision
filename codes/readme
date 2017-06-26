@@ -1,0 +1,32 @@
+First and foremost -:
+Immediately after downloading this rep, you need to change the base path in the following locations -:
+ --> Go to ./densecap/densecap/DenseCapModel_pascal.lua
+ --> Line 270 ( torch.save('/data2/mkreddy/BoRD/final_files/codes/densecap/encoded_feats/temp_inds.t7',{inds=idx}) )
+ --> Change '/data2/mkreddy/BoRD/' to the base path where you've downloaded this repo
+ --> Repeat for ./densecap/densecap/LanguageModel_pascal.lua (Line 310)
+        --> i.e ( torch.save('/data2/mkreddy/BoRD/final_files/codes/densecap/encoded_feats/temp_feats.t7', {feats=image_vecs_encoded}) )
+
+0) main_file.py                  ---> Main file to be run which runs densecap and gets its features, prepares the inputs for siamese_training,
+                                        trains the siamese network and gets the intermediate features. Run it in parts
+1) siamese_regression_mlp_mkr.py ---> main model file used for "training" and "intermediate representations" which are used for generating nDCG
+
+2) siamese_data_prep.py          ---> Prepares the input pairs and ground truth .npy files (5 fold split) by taking the FIC and BORD features of                                           individual images from provided paths
+
+
+3) eval_retrieval_copy2.m        ---> File used on intermediate representation provided by running 1) to generate JUST nDCG scores
+
+find_ind.m, get_RDs.m, nDCG.m are used by the retrieval engine files
+
+
+--> data/training_files/training_inputs/rPascal/Final_feats3_normalized_inputs 
+    should contain all the features which give the SOTA results reported in the draft(https://arxiv.org/abs/1705.09142).
+    The Final_reps/ folder within that contains the final intermediate representation of the siamese network which is then fed to 
+    eval_retrieval_copy2.m to get the nDCG score for **that test split**
+
+--> data/training_files/training_inputs/rPascal/Final_feats
+    Another folder which stores the new execution of codes provided.  
+
+
+################################################
+Prepared by Vishal B. Athreya, on 26 June 2017.#
+################################################
